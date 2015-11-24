@@ -2,7 +2,12 @@
 	<head>
 		<meta charset="utf-8" />
 		<style>
-			body{background:radial-gradient(ellipse at center,#430d6d 0%,#000 100%);perspective:1000px;}
+			html{height:100%;}
+			body{
+				padding:0;margin:0;height:100%;
+				background:radial-gradient(ellipse at center,#430d6d 0%,#000 100%);
+				perspective:1000px;
+			}
 			cube{
 				height:20em;width:20em;
 				/*在窗口居中*/
@@ -10,6 +15,7 @@
 				transform-style:preserve-3d;
 				animation:cube 6s linear infinite;
 				-webkit-animation:cube 6s linear infinite;
+				/*border:1px solid red;*/
 			}
 			@keyframes cube{
 				from{transform:translateZ(-10em) rotateX(0deg) rotateY(0deg);}
@@ -24,40 +30,41 @@
 				width:100%;height:100%;
 				
 				background:linear-gradient(180deg,rgba(0,0,0,0) 0px,rgba(54,226,248,.5) 0px,
-					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 3px),
+					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 0px),
 					linear-gradient(90deg,rgba(0,0,0,0) 0px,rgba(54,226,248,.5) 0px,
-					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 3px);
+					rgba(54,226,248,.5) 3px,rgba(0,0,0,0) 0px);
 					
 				background-size:2.5em 2.5em,2.5em 2.5em;
 				border:2px solid rgba(54,226,248,.5);
 				box-shadow:0 0 5em rgba(0,128,0,.4);
-				
+
 			}
 			back{
 				top:0px;left:0px;
-				transform:translateZ(-20em);
+				transform:translateZ(-10em);
 			}
 			bottom{
 				left:0px;bottom:-20em;
-				transform:rotateX(-90deg);
+				transform:translateZ(10em) rotateX(-90deg);
 				transform-origin:top;
 			}
 			front{
 				left:0px;top:0px;
+				transform:translateZ(10em);
 			}
 			left{
 				left:-20em;top:0px;
-				transform:rotateY(-90deg);
+				transform: translateZ(10em) rotateY(-90deg);
 				transform-origin:right;
 			}
 			right{
 				right:-20em;top:0px;
-				transform:rotateY(90deg);
+				transform:translateZ(10em) rotateY(90deg);
 				transform-origin:left;
 			}
 			top{
 				left:0px;top:-20em;
-				transform:rotateX(90deg);
+				transform:translateZ(10em) rotateX(90deg);
 				transform-origin:bottom;
 			}
 			div{
