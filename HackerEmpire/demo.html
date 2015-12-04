@@ -1,5 +1,5 @@
 <!doctype html>
-<html style=" overflow:hidden;">
+<html>
 	<head>
 		<meta charset="utf-8" />
 	</head>
@@ -8,24 +8,23 @@
 		<script>
 			var canvas = document.getElementById("canvas");
 			var ctx = canvas.getContext("2d");
-			var s = window.screen;
-			var w = canvas.width = s.width;
-			var h = canvas.height = s.height;
+			var w = canvas.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+			var h = canvas.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientWidth;
 			//ctx.fillStyle = "#ff0066";
 			//ctx.fillText("黑色帝国",400,400);
 
-			var words = Array(200).join("1").split("");//生成一个数组来保存单词
+			var words = Array(64).join("1").split("");//生成一个数组来保存单词
 			function draw(){
 				ctx.fillStyle = "rgba(0,0,0,0.05)";
 				ctx.fillRect(0,0,w,h);//画矩形
 				ctx.fillStyle = color2();
 				var ft = 8 + Math.ceil(Math.random()*8);
-				ctx.font = ft + "px";
+				ctx.font = ft + "px '黑体'";
 				words.map(function(y,n){//数组里面具体元素的一个映射
 					text = String.fromCharCode(65+Math.ceil(Math.random()*57));//随机产生一个机器码 65-122
-					x = n*10;
+					x = n*30;
 					ctx.fillText(text,x,y);
-					words[n] = (y>758+Math.random()*484) ? 0 : y+20;
+					words[n] = (y>758+Math.random()*322) ? 0 : y+20;//1080-758=322
 				})
 			}
 			//draw();
