@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,20 @@
 		function eventWindowLoaded(){
 			canvasApp();
 		}
+		//判断浏览器是否支持canvas标签
 		function canvasSupport(){
 			return !!document.createElement('canvas').getContext;
 		}
+		
 		function canvasApp(){
 			if(!canvasSupport()){
 				return;
 			}
-			
+			//定义球数量
 			var numBalls = 100;
 			//球最大半径 最小半径
 			var maxSize = 6,minSize = 4;
+			//定义球最大速度
 			var maxspeed=maxSize+5;
 			var balls = [];
 			// 当前球 x坐标 y坐标 速度 角度 半径 弧度 x方向增量 y方向增量
@@ -28,10 +32,11 @@
 			var theCanvas = document.getElementById('canvasOne');
 			var context = theCanvas.getContext('2d');
 
+			//初始化100个球
 			for(var i = 0 ; i < numBalls; i ++){
 				tempRadius = Math.floor(Math.random()*maxSize)+minSize;
-				tempX = Math.floor(Math.random()*theCanvas.width);
-				tempY = Math.floor(Math.random()*theCanvas.height);
+				tempX = tempRadius + Math.floor(Math.random()*(theCanvas.width - tempRadius*2));
+				tempY = tempRadius + Math.floor(Math.random()*(theCanvas.height - tempRadius*2));
 				tempSpeed = maxspeed - tempRadius;
 				tempAngle = Math.floor(Math.random()*360);
 				tempRadians = tempAngle * Math.PI/180;
@@ -42,7 +47,7 @@
 				balls.push(tempBall);
 			}
 
-
+			//渲染画布
 			function drawScreen(){
 				context.fillStyle = '#eee';
 				context.fillRect(0,0,theCanvas.width,theCanvas.height);
@@ -54,10 +59,10 @@
 					ball.x += ball.xunits;
 					ball.y += ball.yunits;
 					// ball.x 预先知道是否超出墙面，若超出反向运动
-					if(ball.x > theCanvas.width || ball.x < 0){
+					if(ball.x+ball.radius > theCanvas.width || ball.x-ball.radius < 0){
 						ball.angle = 180 - ball.angle;
 						updateBall(ball);
-					}else if(ball.y > theCanvas.height || ball.y < 0){
+					}else if(ball.y+ball.radius > theCanvas.height || ball.y-ball.radius < 0){
 						ball.angle = 360 - ball.angle;
 						updateBall(ball);
 					}
