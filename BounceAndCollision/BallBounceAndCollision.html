@@ -16,7 +16,7 @@
 			if(!canvasSupport()){
 				return;
 			}
-			var numBalls = 200;
+			var numBalls = 100;
 			var balls = [];
 			var tempBall,tempX,tempY,tempSpeed,tempAngle,tempRadius,tempRadians,tempVelocityX,tempVelocityY;
 			
@@ -30,7 +30,7 @@
 				while(!placeOK){
 					tempX = tempRadius + Math.floor(Math.random()*(theCanvas.width - tempRadius*2));
 					tempY = tempRadius + Math.floor(Math.random()*(theCanvas.height- tempRadius*2));
-					tempSpeed = 4;
+					tempSpeed = 1;
 					tempAngle = Math.floor(Math.random()*360);
 					tempRadians = tempAngle * Math.PI/180;
 					tempVelocityX = Math.cos(tempRadians) * tempSpeed;
@@ -163,7 +163,9 @@
 			}
 
 			function gameLoop(){
-				window.setTimeout(gameLoop,200);
+				/* 时间=位移/速度 */ 
+				/* t=s/v 为小球不卡顿 速度均匀 这里时间小一点 重绘快一点 s也得小一点*/
+				window.setTimeout(gameLoop,30);
 				drawScreen();
 			}
 			gameLoop();
